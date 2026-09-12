@@ -9,8 +9,6 @@ system; the outer columns and number row are a safety net. Arrows live on
 | Path | What it is |
 |---|---|
 | `vial/siam-silakka54.vil` | The layout. Vial → File → Load saved layout. Carries all seven layers, eight combos, and the QMK Settings. |
-| `firmware/tuning.c` | **Required if you use Hyper.** Exempts the thumbs from Chordal Hold; without it every left-hand Hyper binding is dead. Also carries per-finger tapping terms, which are the optional part. |
-| `karabiner/hyper.json` | Rectangle window management, CleanShot X capture, spaces and displays — all on Hyper. |
 | `karabiner/travel.json` | Home-row mods and the NAV layer on a laptop keyboard, so time away from the board reinforces rather than erodes. |
 | `docs/index.html` | Every layer drawn, plus the reasoning and the trade-offs. Open it in a browser. |
 
@@ -36,30 +34,17 @@ Chordal Hold **on** and Flow Tap **150** are what make home-row mods survivable
 on QWERTY. Without them, `df` and `dt` misfire constantly. Quick Tap Term is
 **120** so holding Backspace still repeats — at 0 it cannot.
 
-## Hyper map
+## Hyper
 
-Bottom row mirrors the NAV row that sits under `hjkl`, so window halves land
-where page-jumps already live. Top row goes one level bigger: displays and
-spaces. Left hand is CleanShot X.
+The left inner thumb taps Tab and holds Hyper (⌘⌃⌥⇧). Nothing listens to it
+yet — bind it in whichever app you prefer.
 
-| | | | |
-|---|---|---|---|
-| `Y` prev display | `U` space left | `I` space right | `O` next display |
-| `N` left half | `M` bottom half | `,` top half | `.` right half |
-| `H` center | `/` maximize | `B` almost max | `V` restore |
-| `S` capture area | `R` record | `A` all-in-one | `W` window |
-| `F` fullscreen | `T` OCR | `G` scrolling | `D` history |
+One behaviour to know: Chordal Hold forces a same-hand chord to tap when the
+second key lands inside the tapping term. Hyper is a left thumb, so a *fast*
+Hyper + left-hand-letter roll can come out as Tab plus that letter. Holding
+Hyper deliberately is enough to avoid it — Chordal Hold has no effect once the
+tapping term has passed. If fast same-hand chords ever matter, a `get_chordal_hold()`
+that exempts the thumb rows fixes it; see `git log` for the version that had one.
 
-`firmware/tuning.c` must be flashed for any of the left-hand bindings to fire.
-Hyper is a left thumb, so without the thumb exemption Chordal Hold forces it to
-resolve as a tap whenever the next key is also on the left.
-
-**Never bind Hyper to `J`, `K`, `L` or `;`.** Those are right-hand mod-taps and
-Hyper is a left thumb, so Chordal Hold permits the hold — a slightly long press
-sends a modifier instead of the letter. `A S D F` are safe: same hand as the
-Hyper thumb, so Chordal Hold forces them to tap. `H` is safe too, it is not a mod.
-
-**Raycast** is not in here on purpose. Set it to `Opt+Space` inside Raycast
-itself: right-hand Alt on `L` plus the left Space thumb is bilateral, so it is
-one of the most reliable chords on the board. Once Raycast is that close,
-per-app Hyper launch keys stop earning their place.
+Avoid `Hyper + J K L ;` regardless — those are right-hand mod-taps, so an
+opposite-hand hold is permitted and a long press sends a modifier, not a letter.
