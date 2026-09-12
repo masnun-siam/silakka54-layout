@@ -1,0 +1,639 @@
+{
+  "title": "Siam's Silakka54 \u2014 travel layout",
+  "rules": [
+    {
+      "description": "NAV layer \u2014 hold Space (hjkl arrows, row below = Home/PgDn/PgUp/End)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "description": "NAV h -> left_arrow",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV j -> down_arrow",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV k -> up_arrow",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV l -> right_arrow",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV n -> home",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV m -> page_down",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_down"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV comma -> page_up",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_up"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV period -> end",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV y -> left_arrow",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV u -> right_arrow",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV i -> c",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV o -> v",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "NAV p -> z",
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "z",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "slk_nav",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "Space: tap = space, hold = NAV",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "slk_nav",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "slk_nav",
+                "value": 0
+              }
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        }
+      ]
+    },
+    {
+      "description": "Home-row mods \u2014 CAGS (a/; Ctrl, s/l Alt, d/k Cmd, f/j Shift)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "description": "A / hold left_control",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "a"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "S / hold left_option",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_option",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "s"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "D / hold left_command",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_command",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "d"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "F / hold left_shift",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "f"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "J / hold right_shift",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_shift",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "j"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "K / hold right_command",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_command",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "k"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "L / hold right_option",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_option",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "l"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        },
+        {
+          "type": "basic",
+          "description": "SEMICOLON / hold right_control",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_control",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "semicolon"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        }
+      ]
+    },
+    {
+      "description": "Caps Lock -> Ctrl, Tab -> Hyper on hold",
+      "manipulators": [
+        {
+          "type": "basic",
+          "description": "Caps Lock -> Ctrl",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "description": "TAB / hold left_shift",
+          "from": {
+            "key_code": "tab",
+            "modifiers": {
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift",
+              "lazy": true,
+              "modifiers": [
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "tab"
+            }
+          ],
+          "parameters": {
+            "basic.to_if_alone_timeout_milliseconds": 200
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+<title>Siam's Silakka54</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --surface-2:#E9ECF0; --sunk:#DFE3E9;
+  --ink:#15181D; --ink-2:#49505E; --ink-3:#78808F;
+  --rule:#D4D9E0; --rule-2:#BFC6D0;
+  --accent:#1D6B67; --accent-soft:#D9EBE9;
+  --mod-bg:#FBE2E7; --mod-fg:#9E2B43; --mod-edge:#EDC3CC;
+  --thumb-bg:#DEE9F8; --thumb-fg:#215189; --thumb-edge:#BFD3EC;
+  --vim-bg:#E4EFD6; --vim-fg:#47661F; --vim-edge:#CBDDB5;
+  --amber:#9B6A12; --amber-soft:#F6E9CF;
+  --shadow:0 1px 0 var(--rule-2);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131519; --surface:#1B1E25; --surface-2:#232730; --sunk:#0E1014;
+    --ink:#ECEFF4; --ink-2:#AEB5C1; --ink-3:#79818F;
+    --rule:#2C313A; --rule-2:#3A404B;
+    --accent:#52B4AD; --accent-soft:#16302E;
+    --mod-bg:#3A1E25; --mod-fg:#EF8FA2; --mod-edge:#572C36;
+    --thumb-bg:#18293C; --thumb-fg:#8ABBEE; --thumb-edge:#24405C;
+    --vim-bg:#212E19; --vim-fg:#ABD077; --vim-edge:#324524;
+    --amber:#DDA751; --amber-soft:#33280F;
+    --shadow:0 1px 0 #0A0C0F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131519; --surface:#1B1E25; --surface-2:#232730; --sunk:#0E1014;
+  --ink:#ECEFF4; --ink-2:#AEB5C1; --ink-3:#79818F;
+  --rule:#2C313A; --rule-2:#3A404B;
+  --accent:#52B4AD; --accent-soft:#16302E;
+  --mod-bg:#3A1E25; --mod-fg:#EF8FA2; --mod-edge:#572C36;
+  --thumb-bg:#18293C; --thumb-fg:#8ABBEE; --thumb-edge:#24405C;
+  --vim-bg:#212E19; --vim-fg:#ABD077; --vim-edge:#324524;
+  --amber:#DDA751; --amber-soft:#33280F;
+  --shadow:0 1px 0 #0A0C0F;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,serif;
+  font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px; margin:0 auto; padding:40px 24px 96px;
+  display:flex; flex-direction:column; gap:52px}
+
+h1,h2,h3,.eyebrow,.chip,th,.k,.btn{font-family:Chivo,"Helvetica Neue",Arial,sans-serif}
+h1{font-size:clamp(30px,4.4vw,46px); line-height:1.04; font-weight:800;
+   letter-spacing:-.024em; margin:0; text-wrap:balance}
+h2{font-size:22px; font-weight:700; letter-spacing:-.012em; margin:0; text-wrap:balance}
+h3{font-size:14px; font-weight:700; margin:0; letter-spacing:-.004em}
+p{margin:0}
+a{color:var(--accent)}
+.eyebrow{font-size:11px; font-weight:700; letter-spacing:.15em;
+  text-transform:uppercase; color:var(--accent); margin:0}
+.lede{font-size:19px; line-height:1.55; color:var(--ink-2); max-width:66ch}
+.note{font-size:15px; line-height:1.6; color:var(--ink-2); max-width:70ch}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace}
+code{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  font-size:.86em; background:var(--surface-2); padding:.1em .38em;
+  border-radius:3px; color:var(--ink)}
+
+/* ---------- header ---------- */
+header{display:flex; flex-direction:column; gap:18px;
+  border-bottom:2px solid var(--ink); padding-bottom:26px}
+.titlebar{display:flex; flex-wrap:wrap; align-items:flex-end;
+  justify-content:space-between; gap:20px}
+.stamp{font-family:"JetBrains Mono",monospace; font-size:11px; line-height:1.7;
+  color:var(--ink-3); text-align:right; white-space:nowrap}
+.stamp b{color:var(--ink-2); font-weight:500}
+.verdict{background:var(--accent-soft); border-left:3px solid var(--accent);
+  padding:14px 18px; font-size:15px; color:var(--ink-2); max-width:72ch}
+.verdict strong{color:var(--ink); font-weight:600}
+
+/* ---------- sections ---------- */
+section{display:flex; flex-direction:column; gap:20px}
+.sechead{display:flex; flex-direction:column; gap:6px;
+  border-bottom:1px solid var(--rule); padding-bottom:10px}
+
+/* ---------- decisions ---------- */
+.decisions{display:grid; gap:1px; background:var(--rule);
+  border:1px solid var(--rule)}
+.dec{background:var(--surface); padding:16px 18px;
+  display:grid; grid-template-columns:180px 1fr; gap:4px 24px; align-items:baseline}
+.dec dt{font-family:Chivo,sans-serif; font-weight:700; font-size:13px;
+  letter-spacing:.01em; color:var(--ink)}
+.dec dd{margin:0; font-size:15px; color:var(--ink-2); line-height:1.55}
+.dec dd em{font-style:normal; color:var(--ink); font-weight:600;
+  font-family:"JetBrains Mono",monospace; font-size:.88em}
+@media(max-width:640px){.dec{grid-template-columns:1fr}}
+
+/* ---------- legend ---------- */
+.legend{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center}
+.chip{display:inline-flex; align-items:center; gap:7px; font-size:11px;
+  font-weight:600; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--ink-2); padding:5px 10px 5px 7px; border:1px solid var(--rule);
+  background:var(--surface); border-radius:2px}
+.sw{width:11px; height:11px; border-radius:2px; border:1px solid var(--rule-2)}
+
+/* ---------- board ---------- */
+.layer{display:flex; flex-direction:column; gap:14px;
+  padding:22px 0 4px; border-top:1px solid var(--rule)}
+.layer:first-of-type{border-top:none; padding-top:0}
+.layerhead{display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px}
+.layerhead h3{font-size:17px}
+.lchip{font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:500;
+  padding:3px 8px; border-radius:2px; background:var(--surface-2);
+  color:var(--ink-2); border:1px solid var(--rule)}
+.lchip.hold{background:var(--thumb-bg); color:var(--thumb-fg); border-color:var(--thumb-edge)}
+
+.boardscroll{overflow-x:auto; padding:16px 2px 20px; background:var(--sunk);
+  border:1px solid var(--rule)}
+.board{display:flex; gap:46px; justify-content:center; min-width:760px;
+  padding:0 20px}
+.hand{display:flex; flex-direction:column; gap:16px}
+.grid{display:grid; grid-template-columns:repeat(6,42px); gap:5px}
+.thumbs{display:flex; gap:5px}
+.hand-left .thumbs{justify-content:flex-end; padding-right:6px}
+.hand-right .thumbs{justify-content:flex-start; padding-left:6px}
+
+.k{width:42px; height:40px; border-radius:4px; background:var(--surface);
+  border:1px solid var(--rule-2); box-shadow:var(--shadow);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1px; font-family:"JetBrains Mono",monospace; font-size:12px;
+  font-weight:500; color:var(--ink); text-align:center; padding:2px 1px;
+  overflow:hidden}
+.k .sub{font-size:7.5px; font-weight:700; letter-spacing:.05em;
+  text-transform:uppercase; line-height:1; opacity:.9}
+.k.small{font-size:9px; letter-spacing:-.02em}
+.k.tiny{font-size:7.5px; line-height:1.15; letter-spacing:-.01em}
+.k.off{background:transparent; border-color:transparent; box-shadow:none; color:var(--ink-3)}
+.k.extra{background:var(--surface); border-style:dashed; border-color:var(--rule-2); color:var(--ink-3)}
+.k.mod{background:var(--mod-bg); border-color:var(--mod-edge); color:var(--mod-fg)}
+.k.mod .sub{color:var(--mod-fg)}
+.k.thumb{background:var(--thumb-bg); border-color:var(--thumb-edge); color:var(--thumb-fg); width:52px}
+.k.thumb .sub{color:var(--thumb-fg)}
+.k.vim{background:var(--vim-bg); border-color:var(--vim-edge); color:var(--vim-fg)}
+.k.vim .sub{color:var(--vim-fg)}
+
+/* column stagger — mirrors the Silakka54's real profile */
+.hand-left  .c0{transform:translateY(10px)} .hand-right .c0{transform:translateY(6px)}
+.hand-left  .c1{transform:translateY(8px)}  .hand-right .c1{transform:translateY(-2px)}
+.hand-left  .c2{transform:translateY(0)}    .hand-right .c2{transform:translateY(-10px)}
+.hand-left  .c3{transform:translateY(-10px)}.hand-right .c3{transform:translateY(0)}
+.hand-left  .c4{transform:translateY(-2px)} .hand-right .c4{transform:translateY(8px)}
+.hand-left  .c5{transform:translateY(6px)}  .hand-right .c5{transform:translateY(10px)}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto; border:1px solid var(--rule)}
+table{border-collapse:collapse; width:100%; background:var(--surface);
+  font-size:14.5px; min-width:520px}
+th{font-size:10.5px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); text-align:left; padding:11px 16px;
+  border-bottom:1px solid var(--rule-2); background:var(--surface-2); white-space:nowrap}
+td{padding:11px 16px; border-bottom:1px solid var(--rule);
+  color:var(--ink-2); vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.key{font-family:"JetBrains Mono",monospace; font-size:13px; font-weight:500;
+  color:var(--ink); white-space:nowrap; font-variant-numeric:tabular-nums}
+td.val{font-family:"JetBrains Mono",monospace; font-size:13px; color:var(--amber);
+  font-weight:500; white-space:nowrap}
+td.num{font-family:"JetBrains Mono",monospace; color:var(--ink);
+  font-variant-numeric:tabular-nums; white-space:nowrap}
+
+/* ---------- flags ---------- */
+.flags{display:flex; flex-direction:column; gap:0; border:1px solid var(--rule);
+  background:var(--surface)}
+.flag{display:grid; grid-template-columns:26px 1fr; gap:14px; padding:15px 18px;
+  border-bottom:1px solid var(--rule)}
+.flag:last-child{border-bottom:none}
+.flag .n{font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:700;
+  color:var(--amber); padding-top:3px}
+.flag h3{margin-bottom:3px}
+.flag p{font-size:14.5px; color:var(--ink-2); line-height:1.55}
+
+footer{border-top:2px solid var(--ink); padding-top:20px;
+  font-size:14px; color:var(--ink-3); display:flex; flex-direction:column; gap:8px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="titlebar">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <p class="eyebrow">Personal keyboard layout</p>
+      <h1>Siam&rsquo;s Silakka54</h1>
+    </div>
+    <div class="stamp">
+      BOARD &nbsp;<b>Silakka54 &middot; 6&times;4&plus;3</b><br>
+      FIRMWARE &nbsp;<b>Vial 0.7.4&plus;</b><br>
+      ALPHAS &nbsp;<b>QWERTY</b><br>
+      MODS &nbsp;<b>CAGS home row</b><br>
+      HOST &nbsp;<b>macOS &middot; terminal nvim</b>
+    </div>
+  </div>
+  <p class="lede">Thirty-six keys carry the whole alphabet, every symbol, the numbers and all
+  navigation. The remaining eighteen are a safety net. Every modifier sits under a resting finger,
+  every layer is one thumb away, and the arrow keys are the same four keys Vim uses.</p>
+  <div class="verdict"><strong>The short version.</strong> Fifty-four keys, thirty-six of which
+  carry the entire system. Six layers, each reached by holding one thumb. Every modifier lives on
+  the home row. What follows is every layer in full, the eight chords, the firmware settings that
+  make it work, and the reasoning behind each decision &mdash; including what each one cost.</div>
+</header>
+
+<section>
+  <div class="sechead">
+    <p class="eyebrow">The reasoning</p>
+    <h2>Nine decisions, and what each one costs</h2>
+  </div>
+  <p class="note">One idea holds the whole thing together: <strong>&larr;&thinsp;&darr;&thinsp;&uarr;&thinsp;&rarr;
+  live on <code>h j k l</code></strong>. Not near them &mdash; on them. So the motion that moves the
+  cursor in Vim also moves it in a browser, a file manager, a terminal pager and a text field, and
+  the same four keys drive the pointer and the volume. Everything below either serves that, or pays
+  for it.</p>
+
+  <dl class="decisions">
+    <div class="dec"><dt>Alphabet</dt><dd><em>QWERTY.</em> Every optimised alternative scatters <code>h j k l</code> across the board, which turns each Vim motion into a mental transpose. Whatever they win in finger travel does not pay for that.</dd></div>
+    <div class="dec"><dt>Home-row mods</dt><dd><em>CAGS.</em> A/&#59;&nbsp;Ctrl, S/L&nbsp;Alt, D/K&nbsp;Cmd, F/J&nbsp;Shift. Cmd is the most-pressed modifier on macOS, so it takes the middle finger rather than the weakest one; Ctrl takes the pinky, where the Caps-as-Ctrl habit already put it. <strong>Cost:</strong> this ordering is unusual enough that no diagram you find elsewhere will describe this board. That is what this page is for.</dd></div>
+    <div class="dec"><dt>Chordal Hold</dt><dd><em>Enabled.</em> Vial 0.7.4 ships it natively (QMK Settings &rarr; Tap-Hold). Same-hand mod&plus;key is blocked, so <code>df</code>, <code>dt</code>, <code>sd</code> type as plain letters. This is the single change that makes QWERTY home-row mods survivable alongside Vim. <strong>Cost:</strong> see flag 01.</dd></div>
+    <div class="dec"><dt>Escape</dt><dd><em>Left outer thumb only.</em> No <code>jk</code> combo, no Caps-position duplicate. Clean break, fastest path to muscle memory.</dd></div>
+    <div class="dec"><dt>NAV layer</dt><dd><em>Vim-augmented.</em> Arrows stay on h&thinsp;j&thinsp;k&thinsp;l. The row below is spatially derived from them: line-start under &larr;, line-end under &rarr;, page-down under &darr;, page-up under &uarr;. Word motions sit directly above. One spatial map, no lookup table.</dd></div>
+    <div class="dec"><dt>Extra 18 keys</dt><dd><em>Conventional QWERTY overflow.</em> Top row is a real number row; outer columns carry <code>&#96;</code> <code>-</code> <code>[</code> <code>]</code> <code>&apos;</code> Tab Ctrl Shift. Zero new muscle memory, and a bail-out on the days the layers feel like too much.</dd></div>
+    <div class="dec"><dt>Layers</dt><dd><em>Six</em> &mdash; NAV, MOUSE, MEDIA, SYM, NUM, FUN. Five hang off a thumb; MOUSE gave its thumb to Hyper. The numpad survives despite a real number row above it, because entering a column of figures across a row is miserable.</dd></div>
+    <div class="dec"><dt>Hyper</dt><dd><em>Left inner thumb &mdash; tap Tab, hold Hyper</em> (&#8984;&#8963;&#8997;&#8679;). Nothing in macOS binds all four modifiers, so every Hyper chord is exclusively yours. The thumb keeps its tap, so this costs no key &mdash; it costs a <em>layer access</em>: MOUSE gave up its hold and became a toggle behind FUN, on that same physical key.</dd></div>
+    <div class="dec"><dt>Combos</dt><dd><em>Eight, all on the bottom row</em> (plus <code>Q&plus;W</code>). Two filters did the work: no home-row key, because a chord there fights the tap-hold decision every time; and no pair you actually type, which disqualifies the whole QWERTY top row. Brackets mirror finger-for-finger across both hands.</dd></div>
+  </dl>
+</section>
+
+<section>
+  <div class="sechead">
+    <p class="eyebrow">The boards</p>
+    <h2>Base layer and all six layers</h2>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="sw" style="background:var(--mod-bg);border-color:var(--mod-edge)"></span>Home-row mod</span>
+    <span class="chip"><span class="sw" style="background:var(--thumb-bg);border-color:var(--thumb-edge)"></span>Thumb &middot; tap / hold</span>
+    <span class="chip"><span class="sw" style="background:var(--vim-bg);border-color:var(--vim-edge)"></span>Vim-aligned</span>
+    <span class="chip"><span class="sw" style="background:var(--surface);border-style:dashed"></span>Outside the 36-key core</span>
+    <span class="chip"><span class="sw" style="background:transparent;border-color:var(--rule)"></span>Transparent</span>
+  </div>
+  <div id="boards"></div>
+</section>
+
+<section>
+  <div class="sechead">
+    <p class="eyebrow">Twelve chords</p>
+    <h2>Combos</h2>
+  </div>
+  <p class="note">Two constraints, and together they eliminate almost everywhere a combo could go.
+  <strong>One:</strong> nothing on the home row, or the chord races a home-row mod&rsquo;s tap-hold
+  timer. <strong>Two:</strong> nothing on a sequence you actually type &mdash; which rules out the
+  whole top row, because QWERTY packs <code>we</code>, <code>er</code>, <code>rt</code>,
+  <code>io</code> and <code>op</code> into adjacent keys. What survives is the bottom row, which
+  English barely rolls, plus <code>Q&plus;W</code>, a pair no English word contains.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Chord</th><th>Output</th><th>Fingers</th><th>Why it is safe here</th></tr></thead>
+      <tbody>
+        <tr><td class="key">Z &plus; X</td><td class="val">Caps Word</td><td>L pinky &plus; ring</td><td><code>zx</code> does not occur in English</td></tr>
+        <tr><td class="key">X &plus; C</td><td class="val">(</td><td>L ring &plus; middle</td><td><code>xc</code> only in &ldquo;excel&rdquo;-type words, split by a vowel</td></tr>
+        <tr><td class="key">C &plus; V</td><td class="val">&#123;</td><td>L middle &plus; index</td><td><code>cv</code> does not occur</td></tr>
+        <tr><td class="key">V &plus; B</td><td class="val">[</td><td>L index &plus; index-in</td><td><code>vb</code> does not occur</td></tr>
+        <tr><td class="key">N &plus; M</td><td class="val">]</td><td>R index-in &plus; index</td><td><code>nm</code> is vanishingly rare</td></tr>
+        <tr><td class="key">M &plus; ,</td><td class="val">&#125;</td><td>R index &plus; middle</td><td>The one mild risk in the set &mdash; see flag 04</td></tr>
+        <tr><td class="key">, &plus; .</td><td class="val">)</td><td>R middle &plus; ring</td><td>Two punctuation marks never typed back to back</td></tr>
+        <tr><td class="key">Q &plus; W</td><td class="val">&#8984;Q</td><td>L pinky &plus; ring</td><td>No English word contains <code>qw</code>; the awkward reach suits a key that quits apps</td></tr>
+      </tbody>
+    </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sechead">
+    <p class="eyebrow">Vial &middot; QMK Settings</p>
+    <h2>Firmware configuration</h2>
+  </div>
+  <p class="note">All eight ship inside the layout file &mdash; loading it sets the Tap-Hold panel in one go. Listed here because two of them are load-bearing: without Chordal Hold and Flow Tap, home-row modifiers on QWERTY are not merely imperfect, they are unusable.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Setting</th><th>Value</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td class="key">Chordal Hold</td><td class="num">on</td><td>Bilateral combinations. A mod-tap only holds when the other key is on the opposite half &mdash; which is what lets <code>df</code>, <code>dt</code> and <code>sd</code> type as plain letters.</td></tr>
+        <tr><td class="key">Flow Tap</td><td class="num">150 ms</td><td>Suppresses holds during a fast typing streak. Same problem as above, attacked from time-between-keys rather than handedness; the two together are belt and braces.</td></tr>
+        <tr><td class="key">Tapping term</td><td class="num">170 ms</td><td>One global value. With the two settings above doing the real work, per-finger terms stop being necessary.</td></tr>
+        <tr><td class="key">Permissive Hold</td><td class="num">on</td><td>Lets a fast intentional mod register without waiting out the full term.</td></tr>
+        <tr><td class="key">Hold On Other Key Press</td><td class="num">off</td><td>Fights Permissive Hold on a home-row layout &mdash; it would resolve holds on any keypress, misfiring constantly.</td></tr>
+        <tr><td class="key">Quick Tap Term</td><td class="num">0</td><td>Disables tap-then-hold-to-repeat. Left on, typing a letter and immediately reaching for its modifier emits the letter twice.</td></tr>
+        <tr><td class="key">Retro Tapping</td><td class="num">off</td><td>Redundant here, and it makes a held-then-released mod emit a stray letter.</td></tr>
+        <tr><td class="key">Combo term</td><td class="num">38 ms</td><td>Tight enough that sequential typing never trips a chord.</td></tr>
+      </tbody>
+    </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sechead">
+    <p class="eyebrow">The trade-offs</p>
+    <h2>Six costs this layout accepts</h2>
+  </div>
+  <div class="flags">
+    <div class="flag"><span class="n">01</span><div>
+      <h3>Chordal Hold breaks same-hand Cmd shortcuts</h3>
+      <p>&#8984;Q, &#8984;W, &#8984;A, &#8984;S all live on the left hand, and Cmd is on left-hand D. Bilateral
+      combinations block that. You must reach for the <em>right</em> Cmd (K) instead &mdash; which works
+      fine, because the letter is on the left hand and the mod on the right. That is a real habit change,
+      not a broken shortcut. Only &#8984;Q gets a combo escape hatch, because quitting the wrong app hurts.</p>
+    </div></div>
+    <div class="flag"><span class="n">02</span><div>
+      <h3><code>=</code> and <code>\</code> are layer-only</h3>
+      <p>The outer column has four slots per hand and five candidates. <code>-</code> <code>[</code>
+      <code>&apos;</code> <code>]</code> won; <code>=</code> and <code>\</code> live on NUM. If you write
+      more Go than prose, swap <code>-</code> for <code>=</code> on the right outer top.</p>
+    </div></div>
+    <div class="flag"><span class="n">03</span><div>
+      <h3>The M&plus;, chord sits on a real sequence</h3>
+      <p>&ldquo;&hellip;item m, next&hellip;&rdquo; types M then comma. A 35&ndash;40&nbsp;ms combo term makes this
+      safe in practice, but it is the one chord in the set with a plausible collision. Watch it in
+      week one.</p>
+    </div></div>
+    <div class="flag"><span class="n">04</span><div>
+      <h3>The left-hand chords form an overlapping chain</h3>
+      <p>Z&plus;X, X&plus;C, C&plus;V and V&plus;B each share a key with the next. QMK resolves on the
+      exact set pressed, so X&plus;C never fires Z&plus;X &mdash; but rolling the bottom row fast could
+      trip one. In practice you almost never roll <code>zxcv</code>; watch it anyway.</p>
+    </div></div>
+    <div class="flag"><span class="n">05</span><div>
+      <h3>Hyper needs the thumb exemption, or half its chords vanish</h3>
+      <p>Chordal Hold blocks same-hand mod&plus;key. Hyper sits on the <em>left</em> thumb and most
+      Hyper hotkeys land on the left hand &mdash; so without an exemption the firmware would silently
+      swallow them. <code>vimryoku-tuning.c</code> exempts both thumb rows, which is safe because
+      thumbs never appear in a typing roll. Flash that file if you use Hyper.</p>
+    </div></div>
+    <div class="flag"><span class="n">06</span><div>
+      <h3>There is a two-to-six week dip</h3>
+      <p>The alphabet costs nothing &mdash; the home-row mods and the six thumb layers are the whole
+      adaptation. Expect 30&ndash;50&percnt; speed loss for the first week, most of it back by week three.
+      The dip is the price of admission, not a sign the layout is wrong.</p>
+    </div></div>
+  </div>
+</section>
+
+<footer>
+  <p>Configuration: <code>siam-silakka54.vil</code> loads the whole layout into Vial &mdash; seven
+  layers, eight combos, all mod-taps. <code>siam-silakka54-tuning.c</code> adds the parts a
+  <code>.vil</code> cannot carry: per-finger tapping terms and Chordal Hold handedness, both
+  compile-time.</p>
+</footer>
+
+</div>
+
+<script>
+const M=t=>({mod:t});
+// key := null (transparent) | "X" | {l, sub, t, cls}
+const T = (l,sub)=>({l,sub,t:'thumb'});
+const X = (l)=>({l,t:'extra'});
+const V = (l)=>({l,t:'vim'});
+const D = (l)=>({l,t:'mod'});
+
+const MODS_L = [null, D('Ctrl'), D('Alt'), D('Cmd'), D('Shift'), null];
+const MODS_R = [null, D('Shift'), D('Cmd'), D('Alt'), D('Ctrl'), null];
+const BASE_THUMBS_L = [T('Esc','media'), T('Spc','nav'), T('Tab','hyper')];
+const BASE_THUMBS_R = [T('Ent','sym'), T('Bsp','num'), T('Del','fun')];
+
+const LAYERS = [
+ {
+  name:'BASE', hold:'always active', tone:'',
+  note:'QWERTY, unmodified, with CAGS home-row mods. The top row and both outer columns (dashed) sit outside the 36-key core — they are the escape hatch, not part of the system you are learning. There is no Caps Lock: that slot is a dedicated Ctrl, so long chord sequences (tmux C-a, nvim C-w C-w) never wait out the 220 ms tap-hold timer on the pinky.',
+  L:[[X('`'),'1','2','3','4','5'],
+     [X('Tab'),'Q','W','E','R','T'],
+     [X('Ctrl'),{l:'A',sub:'ctrl',t:'mod'},{l:'S',sub:'alt',t:'mod'},{l:'D',sub:'cmd',t:'mod'},{l:'F',sub:'shift',t:'mod'},'G'],
+     [X('⇧'),'Z','X','C','V','B']],
+  LT:BASE_THUMBS_L,
+  R:[['6','7','8','9','0',X('-')],
+     ['Y','U','I','O','P',X('[')],
+     [V('H'),{l:'J',sub:'shift',t:'mod'},{l:'K',sub:'cmd',t:'mod'},{l:'L',sub:'alt',t:'mod'},{l:';',sub:'ctrl',t:'mod'},X("'")],
+     ['N','M',',','.','/',X(']')]],
+  RT:BASE_THUMBS_R
+ },
+ {
+  name:'NAV', hold:'hold left thumb · Space', tone:'hold',
+  note:'The vim-augmented layer. Arrows sit on h j k l. Directly beneath: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. Directly above: word-back and word-forward. Left home row becomes plain mods so ⌘← and ⌥→ still work.',
+  L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
+  LT:BASE_THUMBS_L,
+  R:[[null,null,null,null,null,null],
+     [V('⌥←'),V('⌥→'),{l:'Copy'},{l:'Paste'},{l:'Undo'},X('Cut')],
+     [V('←'),V('↓'),V('↑'),V('→'),{l:'Redo'},null],
+     [V('Home'),V('PgDn'),V('PgUp'),V('End'),{l:'Ins'},X('Menu')]],
+  RT:BASE_THUMBS_R
+ },
+ {
+  name:'MOUSE', hold:'toggle · hold Del, tap inner left thumb', tone:'',
+  note:'The only layer without a thumb of its own — Hyper took it. Same spatial logic as NAV: pointer on h j k l, wheel below. It toggles rather than holds, from the same physical key that used to activate it, so the muscle memory survives. Tap that thumb again to leave.',
+  L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
+  LT:[null,null,T('Exit','off')],
+  R:[[null,null,null,null,null,null],
+     [null,null,{l:'Copy'},{l:'Paste'},{l:'Undo'},X('Cut')],
+     [V('←'),V('↓'),V('↑'),V('→'),null,null],
+     [{l:'Whl←',cls:'tiny'},{l:'Whl↓',cls:'tiny'},{l:'Whl↑',cls:'tiny'},{l:'Whl→',cls:'tiny'},null,null]],
+  RT:[T('L-clk',''),T('R-clk',''),T('M-clk','')]
+ },
+ {
+  name:'MEDIA', hold:'hold left thumb · Esc', tone:'hold',
+  note:'Third layer on the same spatial map: ← is previous track, ↓↑ is volume, → is next. Learn the h j k l cross once and it serves arrows, pointer, and transport.',
+  L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
+  LT:BASE_THUMBS_L,
+  R:[[null,null,null,null,null,X('Boot')],
+     [null,null,{l:'Br−',cls:'small'},{l:'Br+',cls:'small'},null,null],
+     [V('⏮'),V('Vol−'),V('Vol+'),V('⏭'),null,null],
+     [null,null,null,null,null,null]],
+  RT:[T('Stop',''),T('Play',''),T('Mute','')]
+ },
+ {
+  name:'SYM', hold:'hold right thumb · Enter', tone:'hold',
+  note:'The shifted number row folded onto the home position. Its geometry matches NUM key-for-key, so one spatial map covers both. Thumbs give you ( ) and _ without a chord.',
+  L:[[null,null,null,null,null,null],
+     [null,'{','&','*','(','}'],
+     [null,':','$','%','^','+'],
+     [null,'~','!','@','#','|']],
+  LT:[T('(',''),T(')',''),T('_','')],
+  R:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_R,[null,null,null,null,null,null]],
+  RT:BASE_THUMBS_R
+ },
+ {
+  name:'NUM', hold:'hold right thumb · Backspace', tone:'hold',
+  note:'Numpad cluster on the home position — 7 8 9 / 4 5 6 / 1 2 3 with 0 on the home thumb. This is why the layer survived the number row: a real cluster beats a row the moment you enter a column of figures.',
+  L:[[null,null,null,null,null,null],
+     [null,'[','7','8','9',']'],
+     [null,';','4','5','6','='],
+     [null,'`','1','2','3','\\']],
+  LT:[T('.',''),T('0',''),T('-','')],
+  R:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_R,[null,null,null,null,null,null]],
+  RT:BASE_THUMBS_R
+ },
+ {
+  name:'FUN', hold:'hold right thumb · Delete', tone:'hold',
+  note:'Same cluster geometry as NUM, one function-key decade up. F1–F3 bottom, F4–F6 home, F7–F9 top, with F10–F12 down the pinky column.',
+  L:[[null,null,null,null,null,null],
+     [null,{l:'F12',cls:'small'},{l:'F7',cls:'small'},{l:'F8',cls:'small'},{l:'F9',cls:'small'},{l:'Prt',cls:'small'}],
+     [null,{l:'F11',cls:'small'},{l:'F4',cls:'small'},{l:'F5',cls:'small'},{l:'F6',cls:'small'},{l:'Scr',cls:'small'}],
+     [null,{l:'F10',cls:'small'},{l:'F1',cls:'small'},{l:'F2',cls:'small'},{l:'F3',cls:'small'},{l:'Pau',cls:'small'}]],
+  LT:[T('App',''),T('Spc',''),T('Mouse','toggle')],
+  R:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_R,[null,null,null,null,null,null]],
+  RT:BASE_THUMBS_R
+ }
+];
+
+function keyEl(k, col){
+  const d=document.createElement('div');
+  d.className='k c'+col;
+  if(k===null){ d.classList.add('off'); d.textContent='·'; return d; }
+  const o = (typeof k==='string')?{l:k}:k;
+  if(o.t) d.classList.add(o.t);
+  if(o.cls) d.classList.add(o.cls);
+  if(!o.cls && o.l && o.l.length>=4) d.classList.add(o.l.length>=5?'tiny':'small');
+  const span=document.createElement('span'); span.textContent=o.l; d.appendChild(span);
+  if(o.sub){ const s=document.createElement('span'); s.className='sub'; s.textContent=o.sub; d.appendChild(s); }
+  return d;
+}
+function handEl(rows, thumbs, side){
+  const h=document.createElement('div'); h.className='hand hand-'+side;
+  const g=document.createElement('div'); g.className='grid';
+  rows.forEach(r=>r.forEach((k,i)=>g.appendChild(keyEl(k,i))));
+  h.appendChild(g);
+  const t=document.createElement('div'); t.className='thumbs';
+  thumbs.forEach(k=>{ const e=keyEl(k,2); e.classList.remove('c2'); e.style.transform='none'; t.appendChild(e); });
+  h.appendChild(t);
+  return h;
+}
+const host=document.getElementById('boards');
+LAYERS.forEach(L=>{
+  const sec=document.createElement('div'); sec.className='layer';
+  const head=document.createElement('div'); head.className='layerhead';
+  const h3=document.createElement('h3'); h3.textContent=L.name;
+  const c=document.createElement('span'); c.className='lchip'+(L.tone?' '+L.tone:''); c.textContent=L.hold;
+  head.appendChild(h3); head.appendChild(c); sec.appendChild(head);
+  const note=document.createElement('p'); note.className='note'; note.textContent=L.note; sec.appendChild(note);
+  const scroll=document.createElement('div'); scroll.className='boardscroll';
+  const b=document.createElement('div'); b.className='board';
+  b.appendChild(handEl(L.L,L.LT,'left'));
+  b.appendChild(handEl(L.R,L.RT,'right'));
+  scroll.appendChild(b); sec.appendChild(scroll);
+  host.appendChild(sec);
+});
+</script>
