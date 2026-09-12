@@ -7,7 +7,7 @@ system; the outer columns and number row are a safety net. Arrows live on
 | Path | What it is |
 |---|---|
 | `vial/siam-silakka54.vil` | The layout. Vial → File → Load saved layout. Carries all seven layers, eight combos, and the QMK Settings. |
-| `firmware/tuning.c` | Optional. Per-finger tapping terms and thumb-exempt Chordal Hold. Needs a QMK rebuild; header explains when it is worth it. |
+| `firmware/tuning.c` | **Required if you use Hyper.** Exempts the thumbs from Chordal Hold; without it every left-hand Hyper binding is dead. Also carries per-finger tapping terms, which are the optional part. |
 | `karabiner/hyper.json` | Rectangle window management, CleanShot X capture, spaces and displays — all on Hyper. |
 | `karabiner/travel.json` | Home-row mods and the NAV layer on a laptop keyboard, so time away from the board reinforces rather than erodes. |
 | `docs/layout-reference.html` | Every layer drawn, plus the reasoning and the trade-offs. |
@@ -47,6 +47,10 @@ spaces. Left hand is CleanShot X.
 | `H` center | `/` maximize | `B` almost max | `V` restore |
 | `S` capture area | `R` record | `A` all-in-one | `W` window |
 | `F` fullscreen | `T` OCR | `G` scrolling | `D` history |
+
+`firmware/tuning.c` must be flashed for any of the left-hand bindings to fire.
+Hyper is a left thumb, so without the thumb exemption Chordal Hold forces it to
+resolve as a tap whenever the next key is also on the left.
 
 **Never bind Hyper to `J`, `K`, `L` or `;`.** Those are right-hand mod-taps and
 Hyper is a left thumb, so Chordal Hold permits the hold — a slightly long press

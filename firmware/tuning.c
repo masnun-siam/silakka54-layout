@@ -1,23 +1,26 @@
-/* Siam's Silakka54 — optional firmware tuning.
+/* Siam's Silakka54 — firmware tuning.
  *
- * YOU PROBABLY DO NOT NEED THIS FILE.
+ * REQUIRED if you use the Hyper key. Optional otherwise.
  *
- * siam-silakka54.vil now carries the QMK Settings too, so loading it sets the
- * whole Tap-Hold panel in one go — tapping term 170, permissive hold on,
- * quick tap term 0, Chordal Hold on, Flow Tap 150, combo term 38. Nothing to
- * click afterwards.
+ * Hyper lives on the LEFT inner thumb. Chordal Hold — however it is turned on,
+ * GUI checkbox or #define — decides a mod-tap as a hold only when the other
+ * key is on the opposite half. So pressing Hyper and then any LEFT-hand key
+ * puts both on the same half, Hyper is forced to resolve as a tap, and you get
+ * Tab followed by that letter. Every left-hand Hyper binding dies silently:
+ * that is the whole CleanShot X half of karabiner/hyper.json.
  *
- * Flow Tap is why this file is optional. It suppresses holds during a fast
- * typing streak: the same problem per-finger tapping terms solve, approached
- * from time-between-keys rather than which-finger. With Chordal Hold beside
- * it, that covers the ground this file was written for.
+ * get_chordal_hold() below exempts the thumb rows, which fixes it. Thumbs never
+ * appear in a typing roll, so there is nothing to protect against there. This
+ * is QMK's '*' wildcard from the chordal_hold_layout idiom, written as code.
  *
- * Build this ONLY if, after living with the layout, one specific finger still
- * misfires and you want to tune that finger alone -- or if Hyper chords on the
- * left hand come out dead (see the note on get_chordal_hold below). Per-key
- * tapping terms are compile-time; no GUI setting can express them.
+ * The per-finger tapping terms in here are the genuinely optional part. Flow
+ * Tap (150, set by the .vil) attacks the same problem from time-between-keys
+ * rather than which-finger, and mostly covers it.
  *
- * ── If you do build it ───────────────────────────────────────────────────
+ * Everything else the layout needs already ships inside siam-silakka54.vil,
+ * including the QMK Settings — loading it sets the Tap-Hold panel outright.
+ *
+ * ── Build ────────────────────────────────────────────────────────────────
  *     brew install qmk/qmk/qmk
  *     git clone --depth 1 https://github.com/vial-kb/vial-qmk.git ~/vial-qmk
  *     cd ~/vial-qmk && make git-submodule
@@ -25,6 +28,7 @@
  *   Add to keyboards/silakka54/keymaps/vial/config.h:
  *     #define TAPPING_TERM 170
  *     #define TAPPING_TERM_PER_KEY
+ *     #define CHORDAL_HOLD
  *
  *   Append everything below the #include to that keymap's keymap.c (it
  *   already includes QMK_KEYBOARD_H). Its LAYOUT tables are only the
