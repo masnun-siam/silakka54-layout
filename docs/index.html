@@ -387,13 +387,13 @@ const LAYERS = [
  },
  {
   name:'NAV', hold:'hold left thumb · Space', tone:'hold',
-  note:'The vim-augmented layer. Arrows sit on h j k l. Directly beneath: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. Directly above: word-back and word-forward. Left home row becomes plain mods so ⌘← and ⌥→ still work.',
+  note:'Three rows, three scales of motion. Home row moves the cursor — arrows on h j k l. The row beneath moves within the document: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. The row above moves between pages and tabs. Word motions need no keys of their own: the opposite hand holds plain Alt, so Alt+H is ⌥← and Cmd+H is line-start, with Shift for selection.',
   L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
   LT:BASE_THUMBS_L,
   R:[[null,null,null,null,null,null],
-     [V('⌥←'),V('⌥→'),{l:'Copy'},{l:'Paste'},{l:'Undo'},X('Cut')],
-     [V('←'),V('↓'),V('↑'),V('→'),{l:'Redo'},null],
-     [V('Home'),V('PgDn'),V('PgUp'),V('End'),{l:'Ins'},X('Menu')]],
+     [V('⌘['),V('⌃⇧⇥'),V('⌃⇥'),V('⌘]'),{l:'Undo'},X('Copy')],
+     [V('←'),V('↓'),V('↑'),V('→'),{l:'Redo'},X('Paste')],
+     [V('Home'),V('PgDn'),V('PgUp'),V('End'),{l:'Ins'},X('Cut')]],
   RT:BASE_THUMBS_R
  },
  {

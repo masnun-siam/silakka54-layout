@@ -1,0 +1,132 @@
+;; Silakka54 travel layout — home-row mods and three layers on any keyboard
+;; that is not the Silakka54 itself. Same CAGS order, same hjkl arrows, so
+;; time on a laptop reinforces the muscle memory instead of eroding it.
+;;
+;;   Space  tap = space   hold = NAV
+;;   Tab    tap = tab     hold = SYM
+;;   Caps   tap = esc     hold = NUM
+;;
+;; Exit hotkey (physical keys, before remapping): LeftCtrl + Space + Escape
+
+(defcfg
+  ;; defsrc below is partial. Without this, unmapped keys type through while a
+  ;; tap-hold decision is still pending and produce wrong output.
+  process-unmapped-keys yes
+
+  ;; Required by defchordsv2, and correct for rolling home-row mods: the next
+  ;; tap-hold timer starts immediately rather than after the previous expires.
+  concurrent-tap-hold yes
+
+  ;; Process every keyboard EXCEPT these. Verified with: kanata --list
+  ;;
+  ;;   silakka54 ......... does all of this in its own firmware already;
+  ;;                       double-processing would fight itself. Both halves
+  ;;                       report the same name, so one entry covers them.
+  ;;   Karabiner DriverKit  kanata's OWN output device. Without this line kanata
+  ;;                       grabs what it just emitted and feeds back on itself.
+  ;;
+  ;; The driver name carries its version, so re-check this after a driver
+  ;; update -- a stale string here silently reopens the feedback loop.
+  macos-dev-names-exclude (
+    "silakka54"
+    "Karabiner DriverKit VirtualHIDKeyboard 1.8.0"
+  )
+
+  ;; Keep running when no matching device is present, and grab devices as they
+  ;; are plugged in.
+  macos-continue-if-no-devs-found yes
+)
+
+(defsrc
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet spc  rmet ralt
+)
+
+;; Handedness for tap-hold-opposite-hand. This is kanata's equivalent of QMK's
+;; Chordal Hold: a mod only engages when the other key is on the other hand, so
+;; same-hand rolls like df and jk type as plain letters.
+;;
+;; spc, tab and caps are deliberately absent — they are layer keys using
+;; tap-hold-release, which does not consult handedness, and leaving them
+;; unassigned keeps them neutral.
+(defhands
+  (left  q w e r t a s d f g z x c v b 1 2 3 4 5 grv)
+  (right y u i o p h j k l ; n m , . / 6 7 8 9 0 - = [ ] \ ' bspc ret)
+)
+
+(defvar
+  ht 170
+)
+
+(defalias
+  ;; Home-row mods, CAGS: pinky Ctrl, ring Alt, middle Cmd, index Shift.
+  ;; Cmd sits on the middle finger because macOS presses it constantly.
+  a (tap-hold-opposite-hand $ht a lctl)
+  s (tap-hold-opposite-hand $ht s lalt)
+  d (tap-hold-opposite-hand $ht d lmet)
+  f (tap-hold-opposite-hand $ht f lsft)
+  j (tap-hold-opposite-hand $ht j rsft)
+  k (tap-hold-opposite-hand $ht k rmet)
+  l (tap-hold-opposite-hand $ht l ralt)
+  ; (tap-hold-opposite-hand $ht ; rctl)
+
+  ;; Layer keys. Four arguments: tap-repress-timeout, hold-timeout, tap, hold.
+  nav (tap-hold-release $ht $ht spc (layer-while-held nav))
+  sym (tap-hold-release $ht $ht tab (layer-while-held sym))
+  num (tap-hold-release $ht $ht esc (layer-while-held num))
+)
+
+;; Matches the board's eight chords. All on the bottom row except q+w: the top
+;; row packs we, er, rt, io and op into adjacent keys, so nothing safe lives there.
+(defchordsv2
+  (z x) (caps-word 2000) 38 first-release ()
+  (x c) S-9       38 first-release ()   ;; (
+  (c v) S-[       38 first-release ()   ;; {
+  (v b) [         38 first-release ()   ;; [
+  (n m) ]         38 first-release ()   ;; ]
+  (m ,) S-]       38 first-release ()   ;; }
+  (, .) S-0       38 first-release ()   ;; )
+  (q w) M-q       38 first-release ()   ;; quit app
+)
+
+(deflayer base
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  @sym q    w    e    r    t    y    u    i    o    p    [    ]    \
+  @num @a   @s   @d   @f   g    h    @j   @k   @l   @;   '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lalt lmet @nav rmet ralt
+)
+
+;; NAV — three scales of motion. Home row moves the cursor, the row beneath
+;; moves within the document, the row above moves between pages and tabs.
+;; The left hand carries plain mods so Alt+H is still ⌥← and Cmd+H line-start.
+(deflayer nav
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    M-[  C-S-tab C-tab M-] M-z  M-c  _    _
+  _    lctl lalt lmet lsft _    left down up   rght M-S-z M-v _
+  _    _    _    _    _    _    home pgdn pgup end  ins  M-x
+  _    _    _    _    _    _
+)
+
+;; SYM — the board's left-hand symbol grid, shifted number row folded onto the
+;; home position. Right hand carries the mods.
+(deflayer sym
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    S-[  S-7  S-8  S-9  S-]  _    _    _    _    _    _    _    _
+  _    S-;  S-4  S-5  S-6  S-=  _    rsft rmet ralt rctl _    _
+  _    S-grv S-1 S-2  S-3  S-\  _    _    _    _    _    _
+  _    _    _    _    _    _
+)
+
+;; NUM — numpad cluster on the home position. A row of digits is miserable to
+;; enter; a 3x3 block is not.
+(deflayer num
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    [    7    8    9    ]    _    _    _    _    _    _    _    _
+  _    ;    4    5    6    =    _    rsft rmet ralt rctl _    _
+  _    grv  1    2    3    \    _    _    _    _    _    _
+  _    _    _    0    _    _
+)
