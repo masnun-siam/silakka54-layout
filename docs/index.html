@@ -387,8 +387,10 @@ const LAYERS = [
  },
  {
   name:'NAV', hold:'hold left thumb · Space', tone:'hold',
-  note:'Three rows, three scales of motion. Home row moves the cursor — arrows on h j k l. The row beneath moves within the document: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. The row above moves between pages and tabs. Word motions need no keys of their own: the opposite hand holds plain Alt, so Alt+H is ⌥← and Cmd+H is line-start, with Shift for selection.',
-  L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
+  note:'Three rows, three scales of motion. Home row moves the cursor — arrows on h j k l. The row beneath moves within the document: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. The row above moves between pages and tabs. Word motions need no keys of their own: the opposite hand holds plain Alt, so Alt+H is ⌥← and Cmd+H is line-start, with Shift for selection. The index finger reaches G to hold the MOUSE layer without leaving NAV — pointer on the right hand, mouse buttons on the right thumbs, for as long as you hold it.',
+  L:[[null,null,null,null,null,null],[null,null,null,null,null,null],
+     [null, D('Ctrl'), D('Alt'), D('Cmd'), D('Shift'), {l:'Mouse',sub:'hold',cls:'small'}],
+     [null,null,null,null,null,null]],
   LT:BASE_THUMBS_L,
   R:[[null,null,null,null,null,null],
      [V('⌘['),V('⌘⇧['),V('⌘⇧]'),V('⌘]'),{l:'Undo'},X('Copy')],
@@ -397,8 +399,8 @@ const LAYERS = [
   RT:BASE_THUMBS_R
  },
  {
-  name:'MOUSE', hold:'toggle · hold Del, tap inner left thumb', tone:'',
-  note:'The only layer without a thumb of its own — Hyper took it. Same spatial logic as NAV: pointer on h j k l, wheel below. It toggles rather than holds, from the same physical key that used to activate it, so the muscle memory survives. Tap that thumb again to leave.',
+  name:'MOUSE', hold:'hold NAV + G · or toggle from FUN', tone:'hold',
+  note:'Two ways in. Hold the Space thumb for NAV and reach G with your index — pointer for as long as you hold, then straight back to typing. Or toggle it on from FUN when you want it to stay. The only layer without a thumb of its own, because Hyper took it. Same spatial logic as NAV: pointer on h j k l, wheel below. It toggles rather than holds, from the same physical key that used to activate it, so the muscle memory survives. Tap that thumb again to leave.',
   L:[[null,null,null,null,null,null],[null,null,null,null,null,null],MODS_L,[null,null,null,null,null,null]],
   LT:[null,null,T('Exit','off')],
   R:[[null,null,null,null,null,null],
