@@ -1,5 +1,7 @@
 # Silakka54 — personal layout
 
+**[Open the layout reference](docs/index.html)** — every layer drawn, with the reasoning.
+
 QWERTY on a 54-key column-staggered split. Thirty-six keys carry the whole
 system; the outer columns and number row are a safety net. Arrows live on
 `h j k l`, so one motion serves Vim, the browser, the pager and the pointer.
@@ -10,7 +12,7 @@ system; the outer columns and number row are a safety net. Arrows live on
 | `firmware/tuning.c` | **Required if you use Hyper.** Exempts the thumbs from Chordal Hold; without it every left-hand Hyper binding is dead. Also carries per-finger tapping terms, which are the optional part. |
 | `karabiner/hyper.json` | Rectangle window management, CleanShot X capture, spaces and displays — all on Hyper. |
 | `karabiner/travel.json` | Home-row mods and the NAV layer on a laptop keyboard, so time away from the board reinforces rather than erodes. |
-| `docs/layout-reference.html` | Every layer drawn, plus the reasoning and the trade-offs. |
+| `docs/index.html` | Every layer drawn, plus the reasoning and the trade-offs. Open it in a browser. |
 
 ## Applying
 
