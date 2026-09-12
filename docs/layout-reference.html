@@ -292,7 +292,7 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
         <tr><td class="key">Tapping term</td><td class="num">170 ms</td><td>One global value. With the two settings above doing the real work, per-finger terms stop being necessary.</td></tr>
         <tr><td class="key">Permissive Hold</td><td class="num">on</td><td>Lets a fast intentional mod register without waiting out the full term.</td></tr>
         <tr><td class="key">Hold On Other Key Press</td><td class="num">off</td><td>Fights Permissive Hold on a home-row layout &mdash; it would resolve holds on any keypress, misfiring constantly.</td></tr>
-        <tr><td class="key">Quick Tap Term</td><td class="num">0</td><td>Disables tap-then-hold-to-repeat. Left on, typing a letter and immediately reaching for its modifier emits the letter twice.</td></tr>
+        <tr><td class="key">Quick Tap Term</td><td class="num">120 ms</td><td>Backspace is a layer-hold, so holding it opens NUM instead of deleting. This is the escape hatch: tap, then press again within 120&nbsp;ms and it repeats properly. At 0 you can never hold-delete.</td></tr>
         <tr><td class="key">Retro Tapping</td><td class="num">off</td><td>Redundant here, and it makes a held-then-released mod emit a stray letter.</td></tr>
         <tr><td class="key">Combo term</td><td class="num">38 ms</td><td>Tight enough that sequential typing never trips a chord.</td></tr>
       </tbody>
