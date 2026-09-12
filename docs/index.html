@@ -225,7 +225,7 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
     <div class="dec"><dt>Home-row mods</dt><dd><em>CAGS.</em> A/&#59;&nbsp;Ctrl, S/L&nbsp;Alt, D/K&nbsp;Cmd, F/J&nbsp;Shift. Cmd is the most-pressed modifier on macOS, so it takes the middle finger rather than the weakest one; Ctrl takes the pinky, where the Caps-as-Ctrl habit already put it. <strong>Cost:</strong> this ordering is unusual enough that no diagram you find elsewhere will describe this board. That is what this page is for.</dd></div>
     <div class="dec"><dt>Chordal Hold</dt><dd><em>Enabled.</em> Vial 0.7.4 ships it natively (QMK Settings &rarr; Tap-Hold). Same-hand mod&plus;key is blocked, so <code>df</code>, <code>dt</code>, <code>sd</code> type as plain letters. This is the single change that makes QWERTY home-row mods survivable alongside Vim. <strong>Cost:</strong> see flag 01.</dd></div>
     <div class="dec"><dt>Escape</dt><dd><em>Left outer thumb only.</em> No <code>jk</code> combo, no Caps-position duplicate. Clean break, fastest path to muscle memory.</dd></div>
-    <div class="dec"><dt>NAV layer</dt><dd><em>Vim-augmented.</em> Arrows stay on h&thinsp;j&thinsp;k&thinsp;l. The row below is spatially derived from them: line-start under &larr;, line-end under &rarr;, page-down under &darr;, page-up under &uarr;. Word motions sit directly above. One spatial map, no lookup table.</dd></div>
+    <div class="dec"><dt>NAV layer</dt><dd><em>Three scales of motion, stacked.</em> Arrows stay on h&thinsp;j&thinsp;k&thinsp;l. The row below moves within the document &mdash; line-start under &larr;, line-end under &rarr;, pages under &darr;&uarr;. The row above moves between pages and tabs: browser back and forward sit over &larr; and &rarr;, tab switching between them. Word motions need no keys: the opposite hand holds plain Alt, so Alt&plus;H <em>is</em> &#8997;&larr;.</dd></div>
     <div class="dec"><dt>Extra 18 keys</dt><dd><em>Conventional QWERTY overflow.</em> Top row is a real number row; outer columns carry <code>&#96;</code> <code>-</code> <code>[</code> <code>]</code> <code>&apos;</code> Tab Ctrl Shift. Zero new muscle memory, and a bail-out on the days the layers feel like too much.</dd></div>
     <div class="dec"><dt>Layers</dt><dd><em>Six</em> &mdash; NAV, MOUSE, MEDIA, SYM, NUM, FUN. Five hang off a thumb; MOUSE gave its thumb to Hyper. The numpad survives despite a real number row above it, because entering a column of figures across a row is miserable.</dd></div>
     <div class="dec"><dt>Hyper</dt><dd><em>Left inner thumb &mdash; tap Tab, hold Hyper</em> (&#8984;&#8963;&#8997;&#8679;). Nothing in macOS binds all four modifiers, so every Hyper chord is exclusively yours. The thumb keeps its tap, so this costs no key &mdash; it costs a <em>layer access</em>: MOUSE gave up its hold and became a toggle behind FUN, on that same physical key.</dd></div>
@@ -250,7 +250,7 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
 
 <section>
   <div class="sechead">
-    <p class="eyebrow">Twelve chords</p>
+    <p class="eyebrow">Eight chords</p>
     <h2>Combos</h2>
   </div>
   <p class="note">Two constraints, and together they eliminate almost everywhere a combo could go.
@@ -272,7 +272,6 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
         <tr><td class="key">, &plus; .</td><td class="val">)</td><td>R middle &plus; ring</td><td>Two punctuation marks never typed back to back</td></tr>
         <tr><td class="key">Q &plus; W</td><td class="val">&#8984;Q</td><td>L pinky &plus; ring</td><td>No English word contains <code>qw</code>; the awkward reach suits a key that quits apps</td></tr>
       </tbody>
-    </tbody>
     </table>
   </div>
 </section>
@@ -296,7 +295,6 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
         <tr><td class="key">Retro Tapping</td><td class="num">off</td><td>Redundant here, and it makes a held-then-released mod emit a stray letter.</td></tr>
         <tr><td class="key">Combo term</td><td class="num">38 ms</td><td>Tight enough that sequential typing never trips a chord.</td></tr>
       </tbody>
-    </tbody>
     </table>
   </div>
 </section>
@@ -333,11 +331,12 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
       trip one. In practice you almost never roll <code>zxcv</code>; watch it anyway.</p>
     </div></div>
     <div class="flag"><span class="n">05</span><div>
-      <h3>Hyper needs the thumb exemption, or half its chords vanish</h3>
-      <p>Chordal Hold blocks same-hand mod&plus;key. Hyper sits on the <em>left</em> thumb and most
-      Hyper hotkeys land on the left hand &mdash; so without an exemption the firmware would silently
-      swallow them. <code>vimryoku-tuning.c</code> exempts both thumb rows, which is safe because
-      thumbs never appear in a typing roll. Flash that file if you use Hyper.</p>
+      <h3>Hyper wants a deliberate press, not a roll</h3>
+      <p>Hyper sits on the <em>left</em> thumb, so a Hyper&plus;left-hand chord is same-hand, and
+      Chordal Hold forces those to tap &mdash; a fast roll comes out as Tab plus the letter. Chordal
+      Hold has no effect once the tapping term has passed, so simply holding Hyper is enough. Avoid
+      Hyper&plus;<code>J K L &#59;</code> entirely: those are right-hand mod-taps, where the opposite-hand
+      hold <em>is</em> permitted and a long press sends a modifier instead of a letter.</p>
     </div></div>
     <div class="flag"><span class="n">06</span><div>
       <h3>There is a two-to-six week dip</h3>
@@ -350,9 +349,10 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
 
 <footer>
   <p>Configuration: <code>siam-silakka54.vil</code> loads the whole layout into Vial &mdash; seven
-  layers, eight combos, all mod-taps. <code>siam-silakka54-tuning.c</code> adds the parts a
-  <code>.vil</code> cannot carry: per-finger tapping terms and Chordal Hold handedness, both
-  compile-time.</p>
+  layers, eight combos, every mod-tap and the QMK Settings alongside them.
+  <code>silakka54-travel.kbd</code> carries the home-row mods and NAV/SYM/NUM to every other
+  keyboard through kanata, whose <code>defhands</code> is the same opposite-hands rule this board
+  gets from Chordal Hold.</p>
 </footer>
 
 </div>
