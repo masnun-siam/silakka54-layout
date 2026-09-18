@@ -8,7 +8,7 @@ system; the outer columns and number row are a safety net. Arrows live on
 
 | Path | What it is |
 |---|---|
-| `vial/siam-silakka54.vil` | The layout. Vial → File → Load saved layout. Carries all seven layers, eight combos, and the QMK Settings. |
+| `vial/siam-silakka54.vil` | The layout. Vial → File → Load saved layout. Carries all seven layers, eleven combos, two macros, and the QMK Settings. |
 | `kanata/silakka54-travel.kbd` | The same layout on every *other* keyboard — home-row mods plus NAV/SYM/NUM. Time on a laptop reinforces the muscle memory instead of eroding it. |
 | `kanata/dev.kanata.kanata.plist` | LaunchDaemon so kanata starts at boot. |
 | `docs/index.html` | Every layer drawn, plus the reasoning and the trade-offs. Open it in a browser. |
@@ -70,8 +70,8 @@ stale string there silently reopens a feedback loop.
 ## Settings that are load-bearing
 
 Chordal Hold **on** and Flow Tap **150** are what make home-row mods survivable
-on QWERTY. Without them, `df` and `dt` misfire constantly. Quick Tap Term is
-**120** so holding Backspace still repeats — at 0 it cannot.
+on QWERTY. Without them, `df` and `dt` misfire constantly. Tapping term is
+**250 ms**. Quick Tap Term is **120** so holding Backspace still repeats — at 0 it cannot.
 
 ## Hyper
 
