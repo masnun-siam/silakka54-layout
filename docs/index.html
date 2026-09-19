@@ -229,7 +229,7 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
     <div class="dec"><dt>Extra 18 keys</dt><dd><em>Conventional QWERTY overflow.</em> Top row is a real number row; outer columns carry <code>&#96;</code> <code>-</code> <code>[</code> <code>&apos;</code> <code>\</code> Meh(K) <code>&#8984;&#8679;X</code> F5. The left outer column now holds shortcuts that need a dedicated key &mdash; Meh(K) for app bindings, <code>&#8984;&#8679;X</code> for clipboard, F5 for refresh. Zero new muscle memory, and a bail-out on the days the layers feel like too much.</dd></div>
     <div class="dec"><dt>Layers</dt><dd><em>Six</em> &mdash; NAV, MOUSE, MEDIA, SYM, NUM, FUN. Five hang off a thumb; MOUSE gave its thumb to Hyper. The numpad survives despite a real number row above it, because entering a column of figures across a row is miserable.</dd></div>
     <div class="dec"><dt>Hyper</dt><dd><em>Left inner thumb &mdash; tap Tab, hold Hyper</em> (&#8984;&#8963;&#8997;&#8679;). Nothing in macOS binds all four modifiers, so every Hyper chord is exclusively yours. The thumb keeps its tap, so this costs no key &mdash; it costs a <em>layer access</em>: MOUSE gave up its hold and became a toggle behind FUN, on that same physical key.</dd></div>
-    <div class="dec"><dt>Combos</dt><dd><em>Twelve.</em> Eight on the bottom row and outer edges, plus three additions: <code>G&plus;H</code> for Spotlight (both keys are mod-taps on opposite hands, so no tap-hold race), <code>Q&plus;W&plus;E</code> for &#8984;W, and <code>Q&plus;\</code> for the dismiss-notifications macro &mdash; and <code>.&plus;/</code> fires quote, so the 36-key core never needs the outer home column. Same two filters &mdash; no pair you actually type &mdash; plus the <code>G&plus;H</code> exception where opposite-hand mod-taps make it safe.</dd></div>
+    <div class="dec"><dt>Combos</dt><dd><em>Twelve.</em> Eight on the bottom row and outer edges, plus three additions: <code>G&plus;H</code> for Spotlight (both keys are mod-taps on opposite hands, so no tap-hold race), <code>Q&plus;W&plus;E</code> for &#8984;W, and <code>Q&plus;\</code> for the dismiss-notifications macro &mdash; and <code>.&plus;/</code> fires quote, one of two ways it now reaches the 36-key core: SYM&rsquo;s R position carries it too. Same two filters &mdash; no pair you actually type &mdash; plus the <code>G&plus;H</code> exception where opposite-hand mod-taps make it safe.</dd></div>
   </dl>
 </section>
 
@@ -271,7 +271,7 @@ footer{border-top:2px solid var(--ink); padding-top:20px;
         <tr><td class="key">N &plus; M</td><td class="val">]</td><td>R index-in &plus; index</td><td><code>nm</code> is vanishingly rare</td></tr>
         <tr><td class="key">M &plus; ,</td><td class="val">&#125;</td><td>R index &plus; middle</td><td>The one mild risk in the set &mdash; see flag 04</td></tr>
         <tr><td class="key">, &plus; .</td><td class="val">)</td><td>R middle &plus; ring</td><td>Two punctuation marks never typed back to back</td></tr>
-        <tr><td class="key">. &plus; /</td><td class="val">&apos;</td><td>R ring &plus; pinky</td><td><code>./</code> never occurs in English &mdash; quote lives inside the 36-key core</td></tr>
+        <tr><td class="key">. &plus; /</td><td class="val">&apos;</td><td>R ring &plus; pinky</td><td><code>./</code> never occurs in English &mdash; quote also lives on SYM&rsquo;s R, so the 36-key core reaches it either way</td></tr>
         <tr><td class="key">Q &plus; W &plus; E</td><td class="val">&#8984;W</td><td>L pinky &plus; ring &plus; middle</td><td>Triple chord &mdash; no English word contains <code>qwe</code>; closes the window you are on</td></tr>
         <tr><td class="key">Q &plus; \</td><td class="val">M0</td><td>L pinky &plus; outer column</td><td>Dismiss Notifications macro &mdash; the outer <code>\</code> key earns its keep</td></tr>
       </tbody>
@@ -391,8 +391,8 @@ const LAYERS = [
  },
  {
   name:'NAV', hold:'hold left thumb · Space', tone:'hold',
-  note:'Three rows, three scales of motion. Home row moves the cursor — arrows on h j k l. The row beneath moves within the document: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. The row above moves between pages and tabs. M0 (Dismiss Notifications macro) sits on the grave key, and Copy/Paste on C/V so clipboard work needs no thumb. Word motions need no keys of their own: the opposite hand holds plain Alt, so Alt+H is ⌥← and Cmd+H is line-start, with Shift for selection. The index finger reaches G to hold the MOUSE layer without leaving NAV — pointer on the right hand, mouse buttons on the right thumbs, for as long as you hold it.',
-  L:[[X('M0'),null,null,null,null,null],[null,null,null,null,null,null],
+  note:'Three rows, three scales of motion. Home row moves the cursor — arrows on h j k l. The row beneath moves within the document: line-start under ←, page-down under ↓, page-up under ↑, line-end under →. The row above moves between pages and tabs. M0 (Dismiss Notifications macro) sits on the grave key, M1 (Select word — ⌥← then ⇧⌥→) sits on W, and Copy/Paste on C/V so clipboard work needs no thumb. Word motions need no keys of their own: the opposite hand holds plain Alt, so Alt+H is ⌥← and Cmd+H is line-start, with Shift for selection. The index finger reaches G to hold the MOUSE layer without leaving NAV — pointer on the right hand, mouse buttons on the right thumbs, for as long as you hold it.',
+  L:[[X('M0'),null,null,null,null,null],[null,null,{l:'SelWd',cls:'tiny'},null,null,null],
      [null, D('Ctrl'), D('Alt'), D('Cmd'), D('Shift'), {l:'Mouse',sub:'hold',cls:'small'}],
      [null,{l:'Copy',cls:'small'},'X','C',{l:'Paste',cls:'small'},null]],
   LT:BASE_THUMBS_L,
@@ -426,9 +426,9 @@ const LAYERS = [
  },
  {
   name:'SYM', hold:'hold right thumb · Enter', tone:'hold',
-  note:'The shifted number row folded onto the home position. Its geometry matches NUM key-for-key, so one spatial map covers both. Thumbs give you ( ) and _ without a chord.',
+  note:'The shifted number row folded onto the home position. Its geometry matches NUM key-for-key, so one spatial map covers both. Thumbs give you ( ) and _ without a chord — which is why the R position gives up ( for the quote, the one character the 36-key core still had to reach outside for.',
   L:[[null,null,null,null,null,null],
-     [null,'{','&','*','(','}'],
+     [null,'{','&','*',"'",'}'],
      [null,':','$','%','^','+'],
      [null,'~','!','@','#','|']],
   LT:[T('(',''),T(')',''),T('_','')],
